@@ -31,6 +31,5 @@ export class UsersController {
     updateUser(@Param('id') id:string, @Body() body:UpdateUserDto){
         return this.userService.update(parseInt(id), body)
     }
-
 }
 
