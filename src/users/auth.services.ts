@@ -17,6 +17,9 @@ export class AuthServices{
 
         //generate salt
         const saltPass = randomBytes(8).toString('hex')
+
+        //hash the salt and password together 
+        const hash = (await scrypt(password, saltPass, 32))as Buffer
     }
     Signin(){
 
