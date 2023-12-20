@@ -20,6 +20,15 @@ export class AuthServices{
 
         //hash the salt and password together 
         const hash = (await scrypt(password, saltPass, 32))as Buffer
+
+        //join joined the hashed result and salt together
+        const result = saltPass + '.' + hash.toString('hex')
+
+        //create a user
+        const user = await this.userServices.create(email,result)
+
+        //return a user
+        return user
     }
     Signin(){
 
