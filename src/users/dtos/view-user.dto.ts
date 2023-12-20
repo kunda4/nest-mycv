@@ -4,5 +4,5 @@ export class ViewUserDto{
     @Expose()
     id:number;
     @Expose()
-    email:string
+    email:string;
 }
