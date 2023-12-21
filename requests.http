@@ -1,2 +1,13 @@
 
 GET http://localhost:3000/auth/3
+
+###
+GET http://localhost:3000/auth/whoami
+### create a user
+POST http://localhost:3000/auth/signup
+content-type: application/json
+
+{
+  "email": "kunda04@gmail.com",
+  "password": "kunda123"
+ }
