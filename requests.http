@@ -4,10 +4,14 @@ GET http://localhost:3000/auth/3
 ###
 GET http://localhost:3000/auth/whoami
 ### create a user
-POST http://localhost:3000/auth/signup
+POST http://localhost:3000/auth/signin
 content-type: application/json
 
 {
   "email": "kunda04@gmail.com",
   "password": "kunda123"
  }
+
+###
+POST http://localhost:3000/auth/signout
+content-type: application/json

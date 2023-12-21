@@ -6,8 +6,9 @@ import { Serialize } from '../interceptors/serialize.interceptor';
 import { ViewUserDto } from './dtos/view-user.dto';
 import { AuthServices } from './auth.services';
 
-@Serialize(ViewUserDto)
+
 @Controller('auth')
+@Serialize(ViewUserDto)
 export class UsersController {
     constructor(
         private userService:UsersService,
@@ -29,7 +30,12 @@ export class UsersController {
         session.userId = user.id
         return user
     }
-   
+
+    @Post('/signout')     
+    signOut(@Session() session:any){
+        return session.userId = null
+    }
+
     @Get('/:id')
      async findUser(@Param('id') id:string){
         const user = await this.userService.findOne(parseInt(id));
