@@ -6,6 +6,7 @@ import { Serialize } from '../interceptors/serialize.interceptor';
 import { ViewUserDto } from './dtos/view-user.dto';
 import { AuthServices } from './auth.services';
 import { CurrentUser } from './decorators/current-user.decorator';
+import { UserEntity } from './users.entity';
 
 
 @Controller('auth')
@@ -16,7 +17,7 @@ export class UsersController {
         private authService:AuthServices){}
 
     @Get('/whoami')
-    whoAmI(@CurrentUser() user:string){
+    whoAmI(@CurrentUser() user:UserEntity){
         return user
     }   
     @Post('/signup')
