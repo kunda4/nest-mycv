@@ -7,9 +7,10 @@ import exp from 'constants'
 
 describe('AuthService', () =>{
     let service:AuthServices 
+    let fakeUsersServices: Partial<UsersService>
     beforeEach(async ()=>{
         // create a fake copy of the user services
-        const fakeUsersServices: Partial<UsersService> = {
+             fakeUsersServices = {
             find:() => Promise.resolve([]),
             create:(email:string, password:string) =>
             Promise.resolve({id:1, email, password} as UserEntity),
@@ -37,4 +38,12 @@ describe('AuthService', () =>{
         expect(salt).toBeDefined(),
         expect(hashed).toBeDefined()
     });
+    it('throw an error when a user sign up with email which already in use', async ()=>{
+        fakeUsersServices.find = ()=> Promise.resolve([{id:1, email:'kund@gmail.com', password:'kunda.123'} as UserEntity])
+        try {
+            await service.Signup('kunda@gmail.com','kunda.123')
+        } catch (error) {
+            expect(error.message).toBe('the email is already in use')
+        }
+    })
 });
