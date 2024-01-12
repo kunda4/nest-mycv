@@ -46,4 +46,11 @@ describe('AuthService', () =>{
             expect(error.message).toBe('the email is already in use')
         }
     })
+    it('throw an error when a user does not found', async () =>{
+        try {
+           await service.Signin('kunda@gmail.com', 'kunda.123') 
+        } catch (error) {
+            expect(error.message).toBe('The user not found')
+        }
+    })
 });
