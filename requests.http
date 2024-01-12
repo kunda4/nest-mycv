@@ -14,4 +14,4 @@ content-type: application/json
 
 ###
 POST http://localhost:3000/auth/signout
-content-type: application/json
+content-type: application/application/application/json
