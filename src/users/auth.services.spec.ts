@@ -56,7 +56,7 @@ describe('AuthService', () =>{
     it('throw an error when an invalid password provided', async () =>{
         fakeUsersServices.find = ()=> Promise.resolve([{email: 'kunda@gmail.com', password:'kunda123'} as UserEntity])
         try {
-            await service.Signin('kunda@gmail.com', 'kunda129345')
+            await service.Signin('kunda@gmail.com', '1234567')
         } catch (error) {
             expect(error.message).toBe('invalid credentials')
         }
