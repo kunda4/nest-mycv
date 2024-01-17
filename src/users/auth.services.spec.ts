@@ -2,14 +2,13 @@ import {Test} from '@nestjs/testing'
 import { AuthServices } from './auth.services'
 import { UsersService } from './users.service'
 import { UserEntity } from './users.entity'
-import exp from 'constants'
 
 
 describe('AuthService', () =>{
     let service:AuthServices 
     let fakeUsersServices: Partial<UsersService>
     beforeEach(async ()=>{
-        // create a fake copy of the user services
+      //  create a fake copy of the user services
              fakeUsersServices = {
             find:() => Promise.resolve([]),
             create:(email:string, password:string) =>
@@ -60,5 +59,16 @@ describe('AuthService', () =>{
         } catch (error) {
             expect(error.message).toBe('invalid credentials')
         }
+    })
+    it('should return a user when the valid password provided', async()=> {
+        fakeUsersServices.find = ()=> Promise.resolve([{
+            email:'kunda@gmail.com', password:'kunda12345'} as UserEntity])
+            try {
+
+                await service.Signin('kunda1@gmail.com', 'password123')
+
+            } catch (error) {
+                expect(error.message).toBeDefined()
+            }
     })
 });
