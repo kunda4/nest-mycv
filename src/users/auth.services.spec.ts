@@ -62,13 +62,11 @@ describe('AuthService', () =>{
     })
     it('should return a user when the valid password provided', async()=> {
         fakeUsersServices.find = ()=> Promise.resolve([{
-            email:'kunda@gmail.com', password:'kunda12345'} as UserEntity])
-            try {
+            email:'kunda@gmail.com', password:'fd991af71a497f4e.5072276a28aeea2ecab07737fcf5af891b3b3e43ec4bfbde953e20a3e3466625'} as UserEntity])
 
-                await service.Signin('kunda1@gmail.com', 'password123')
 
-            } catch (error) {
-                expect(error.message).toBeDefined()
-            }
+                const user = await service.Signin('kunda@gmail.com', 'mypassword')
+
+                expect(user).toBeDefined()
     })
 });
