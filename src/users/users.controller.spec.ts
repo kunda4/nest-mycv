@@ -34,6 +34,16 @@ describe('UsersController', () => {
     }
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
+      providers: [
+        {
+          provide: UsersService,
+          useValue: fakeUsersServices
+        },
+        {
+          provide: AuthServices,
+          useValue: fakeAuthServices
+        }
+      ]
     }).compile();
 
     controller = module.get<UsersController>(UsersController);
