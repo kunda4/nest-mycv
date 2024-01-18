@@ -46,7 +46,8 @@ describe('AuthService', () =>{
         expect(hashed).toBeDefined()
     });
     it('throw an error when a user sign up with email which already in use', async ()=>{
-        fakeUsersServices.find = ()=> Promise.resolve([{id:1, email:'kund@gmail.com', password:'kunda.123'} as UserEntity])
+       
+        await service.Signup('kunda@gmail.com', 'kunda.123')
         try {
             await service.Signup('kunda@gmail.com','kunda.123')
         } catch (error) {
@@ -54,6 +55,7 @@ describe('AuthService', () =>{
         }
     })
     it('throw an error when a user does not found', async () =>{
+        await service.Signup('kundaaggy@gmail.com', 'kunda11234')
         try {
            await service.Signin('kunda@gmail.com', 'kunda.123') 
         } catch (error) {
