@@ -24,7 +24,9 @@ describe('UsersController', () => {
       remove: (id:number)=>{
         return Promise.resolve({id, email:'kunda@gmail.com',password:'kunda123'}as UserEntity)
       },
-      update: ()=>{}
+      update: (id:number)=>{
+        return Promise.resolve({id, email:'kunda@gmail.com', password:'kunda123'}as UserEntity)
+      }
     }
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
