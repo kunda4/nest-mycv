@@ -9,8 +9,12 @@ describe('AuthService', () =>{
     let fakeUsersServices: Partial<UsersService>
     beforeEach(async ()=>{
       //  create a fake copy of the user services
+            const user:UserEntity[] =[]
              fakeUsersServices = {
-            find:() => Promise.resolve([]),
+            find:(email:string) => {
+                const filterUser = user.filter(users => users.email === email)
+                return Promise.resolve(filterUser)
+            }
             create:(email:string, password:string) =>
             Promise.resolve({id:1, email, password} as UserEntity),
         };
@@ -63,10 +67,7 @@ describe('AuthService', () =>{
     it('should return a user when the valid password provided', async()=> {
         fakeUsersServices.find = ()=> Promise.resolve([{
             email:'kunda@gmail.com', password:'fd991af71a497f4e.5072276a28aeea2ecab07737fcf5af891b3b3e43ec4bfbde953e20a3e3466625'} as UserEntity])
-
-
                 const user = await service.Signin('kunda@gmail.com', 'mypassword')
-
                 expect(user).toBeDefined()
     })
 });
