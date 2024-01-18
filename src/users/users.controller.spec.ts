@@ -18,7 +18,9 @@ describe('UsersController', () => {
       findOne: (id:number)=>{
         return Promise.resolve({id, email:'kunda@gmail.com', password:'kunda123'} as UserEntity)
       },
-      find: ()=>{},
+      find: (email:string)=>{
+        return Promise.resolve([{email:'kundaaggy@gmail.com', password:'kunda123'}as UserEntity] )
+      },
       remove: ()=>{},
       update: ()=>{}
     }
