@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { AuthServices } from './auth.services';
+import { UserEntity } from './users.entity';
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -14,7 +15,9 @@ describe('UsersController', () => {
       Signup: ()=>{},
     }
     fakeUsersServices = {
-      findOne: ()=>{},
+      findOne: (id:number)=>{
+        return Promise.resolve({id, email:'kunda@gmail.com', password:'kunda123'} as UserEntity)
+      },
       find: ()=>{},
       remove: ()=>{},
       update: ()=>{}
