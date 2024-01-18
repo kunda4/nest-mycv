@@ -11,8 +11,12 @@ describe('UsersController', () => {
 
   beforeEach(async () => {
     fakeAuthServices = {
-      Signin: ()=>{},
-      Signup: ()=>{},
+      Signin: (email:string, password:string)=>{
+        return Promise.resolve({email:'kunda@gmail.com', password:'kunda123'}as UserEntity)
+      },
+      Signup: (email:string, password:string)=>{
+        return Promise.resolve({email:'kunda@gmail.com', password:'kunda123'}as UserEntity)
+      },
     }
     fakeUsersServices = {
       findOne: (id:number)=>{
