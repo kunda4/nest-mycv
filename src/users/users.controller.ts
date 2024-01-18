@@ -7,7 +7,7 @@ import { ViewUserDto } from './dtos/view-user.dto';
 import { AuthServices } from './auth.services';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { UserEntity } from './users.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 @Controller('auth')
