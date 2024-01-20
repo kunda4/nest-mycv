@@ -11,8 +11,8 @@ describe('UsersController', () => {
 
   beforeEach(async () => {
     fakeAuthServices = {
-      Signin: (email:string, password:string)=>{
-        return Promise.resolve({email:'kunda@gmail.com', password:'kunda123'}as UserEntity)
+      Signin: ( email:string, password:string)=>{
+        return Promise.resolve({id:1, email, password}as UserEntity)
       },
       Signup: (email:string, password:string)=>{
         return Promise.resolve({email:'kunda@gmail.com', password:'kunda123'}as UserEntity)
@@ -68,5 +68,11 @@ describe('UsersController', () => {
   } catch (error) {
     error
   }
+  })
+  it('user should be able to sign in', async()=>{
+    const session = {userId:30}
+    const user = await controller.SignIn({email:'kunda@gmail.com', password:'kunda123'}, session)
+    expect(user.id).toEqual(1)
+    expect(session.userId).toEqual(1)
   })
 });
